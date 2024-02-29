@@ -1,0 +1,41 @@
+// express is used for middleware. nodejs is not fully made for web programming
+// app.use is used for handling express middleware
+// express is an UNOPINIONATED  web framework
+const express = require('express');
+const mysql = require('mysql2');
+const bodyparser = require('body-parser');
+const port = 3001;
+
+const app = express();
+
+app.use(bodyparser.json());
+
+var mysqlConnection = mysql.createConnection({
+    host: 'localhost',
+    port: 3306,
+    user: 'root',
+    password: 'MyNewPass',
+    database: 'test1'
+});
+
+mysqlConnection.connect((err) => {
+    if(err) {
+        console.log(`Cannot connect to db : ${err}`);
+    }
+    else{
+        console.log(`Connected to db`);
+    }
+});
+
+mysqlConnection.query("SELECT * FROM student", (err, rows) => {
+    if(err){
+        console.log(`Cannot query`, err);
+    }
+    else{
+        console.log(rows);
+    }
+})
+
+app.listen(port, () => {
+    console.log(`Server listening on ${port}`);
+})

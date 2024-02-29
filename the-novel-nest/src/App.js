@@ -8,25 +8,27 @@ import RegistrationForm from './components/RegistrationForm';
 import Cart from './components/Cart';
 import Orders from './components/Orders';
 import About from './components/About';
-import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 function App() {
   return (
     <Router>
-      {/* <Header/>
-      <Banner/>
+      {/* <>
+      <Header />
+      <Banner />
       <Booklist />
-      <Footer/> */}
+      <Footer />
+    </> */}
 
-      
-        <Routes>
-          <Route path='' element={<><Header/><Banner/><Booklist/><Footer/></>} />
-          <Route path='/cart' element={<Cart/>} />
-          <Route path='/orders' element={<Orders/>} />
-          <Route path='/register' element={<RegistrationForm/>} />
-          <Route path='/about' element={<About/>} />
-        </Routes>
-      
+
+      <Routes>
+        <Route path='' element={<><Header /><Banner /><Booklist /><Footer /></>} />
+        <Route path='/cart' element={<Cart />} />
+        <Route path='/orders' element={<Orders />} />
+        <Route path='/register' element={<RegistrationForm />} />
+        <Route path='/about' element={<About />} />
+      </Routes>
+
     </Router>
   );
 }

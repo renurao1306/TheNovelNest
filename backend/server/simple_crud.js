@@ -34,7 +34,34 @@ mysqlConnection.query("SELECT * FROM student", (err, rows) => {
     else{
         console.log(rows);
     }
-})
+});
+
+mysqlConnection.query("INSERT INTO student values(3, 'koya', 'koya')", (err, rows) => {
+    if(err){
+        console.log(`Cannot query`, err);
+    }
+    else{
+        console.log(rows);
+    }
+});
+
+mysqlConnection.query("UPDATE student SET lastname = 'tim' where id = 3", (err, rows) => {
+    if(err){
+        console.log(`Cannot query`, err);
+    }
+    else{
+        console.log(rows);
+    }
+});
+
+mysqlConnection.query("DELETE FROM student where id = 3", (err, rows) => {
+    if(err){
+        console.log(`Cannot query`, err);
+    }
+    else{
+        console.log(rows);
+    }
+});
 
 app.listen(port, () => {
     console.log(`Server listening on ${port}`);

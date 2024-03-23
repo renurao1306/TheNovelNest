@@ -168,6 +168,7 @@ function RegistrationForm({ props }) {
                                 <input type="checkbox" id="art" value="art" onChange={(e) => { handleCheckbox(e) }} /> Art
                                 <input type="checkbox" id="reading" value="reading" onChange={(e) => { handleCheckbox(e) }} /> Reading
                                 <input type="checkbox" id="sports" value="sports" onChange={(e) => { handleCheckbox(e) }} /> Sports
+                                <input type="checkbox" id="music" value="music" onChange={(e) => { handleCheckbox(e) }} /> Music
                             </td>
                         </tr>
                         <tr>

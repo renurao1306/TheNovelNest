@@ -1,12 +1,11 @@
 const http = require('http');
-const url = require('url'); // Include the url module 
-const port = 3000;
+const url = require('url');
+const port = 3001;
 
 const server = http.createServer((req, res) => {
-    // Use the url module to parse the request URL 
-    const parsedUrl = url.parse(req.url, true); // The second argument `true` parses the query string as well 
+    const parsedUrl = url.parse(req.url, true);
     const path = parsedUrl.pathname;
-    const path1 = path.replace(/^\/+|\/+$/g, ''); // Remove leading and trailing slashes 
+    const path1 = path.replace(/^\/+|\/+$/g, '');
 
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/html');
@@ -26,6 +25,6 @@ const server = http.createServer((req, res) => {
 
 
 server.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+    console.log(`Server listening on port ${port}`);
 });
 

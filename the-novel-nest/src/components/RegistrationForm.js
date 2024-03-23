@@ -10,7 +10,18 @@ function RegistrationForm({ props }) {
     const [address, setAddress] = useState('');
     const [course, setCourse] = useState('');
     const [gender, setGender] = useState('');
-    // const [hobbies, setHobbies] = useState({ reading: false, sports: false });
+    const [hobbies, setHobbies] = useState([]);
+
+    const handleCheckbox = (e) => {
+        const hobby = e.target.value;
+        if (e.target.checked) {
+            setHobbies([...hobbies, hobby]);
+        }
+        else {
+            setHobbies([hobbies.filter(item => item !== hobby)]);
+        }
+    }
+
 
     function handleChange(event) {
         if (event.target.id === "firstname") {
@@ -19,7 +30,7 @@ function RegistrationForm({ props }) {
         if (event.target.id === "lastname") {
             setLastname(event.target.value);
         }
-        if(event.target.id === "email"){
+        if (event.target.id === "email") {
             setEmail(event.target.value);
         }
         if (event.target.id === "password") {
@@ -40,13 +51,6 @@ function RegistrationForm({ props }) {
         if (event.target.id === 'gender2') {
             setGender(event.target.value);
         }
-        // if (event.target.type === "checkbox") {
-        //     setHobbies(prevHobbies => ({
-        //         ...prevHobbies,
-        //         [event.target.id]: event.target.checked
-        //     }));
-
-        // }
     }
 
     const validate = () => {
@@ -83,15 +87,15 @@ function RegistrationForm({ props }) {
             window.alert('Passwords do not match');
             return false;
         }
-        if(address === ''){
+        if (address === '') {
             window.alert('Please enter your address');
             return false;
         }
-        if(course === 'default'){
+        if (course === 'default') {
             window.alert('Please select a course');
             return false;
         }
-        if(gender === ''){
+        if (gender === '') {
             window.alert('Please select your gender');
             return false;
         }
@@ -103,7 +107,7 @@ function RegistrationForm({ props }) {
     const handleSubmit = (event) => {
         event.preventDefault();
         if (validate()) {
-            console.log(firstname, lastname, email, password, confirmPassword, address, course, gender);
+            console.log(firstname, lastname, email, password, confirmPassword, address, course, gender, hobbies);
         }
 
     }
@@ -154,17 +158,18 @@ function RegistrationForm({ props }) {
                         <tr>
                             <td>Select gender:</td>
                             <td>
-                                <input type="radio" id="gender1" checked={gender === 'male'} value="male" onChange={handleChange} /> Male
-                                <input type="radio" id="gender2" checked={gender === 'female'} value="female" onChange={handleChange} /> Female
+                                <input type="radio" name="gender" id="gender1" checked={gender === 'male'} value="male" onChange={handleChange} /> Male
+                                <input type="radio" name="gender" id="gender2" checked={gender === 'female'} value="female" onChange={handleChange} /> Female
                             </td>
                         </tr>
-                        {/* <tr>
+                        <tr>
                             <td>Select hobbies:</td>
                             <td>
-                                <input type="checkbox" id="reading"  checked={hobbies.reading} value="reading" onChange={handleChange}/> Reading
-                                <input type="checkbox" id="sports"  checked={hobbies.sports} value="sports" onChange={handleChange}/> Sports
+                                <input type="checkbox" id="art" value="art" onChange={(e) => { handleCheckbox(e) }} /> Art
+                                <input type="checkbox" id="reading" value="reading" onChange={(e) => { handleCheckbox(e) }} /> Reading
+                                <input type="checkbox" id="sports" value="sports" onChange={(e) => { handleCheckbox(e) }} /> Sports
                             </td>
-                        </tr> */}
+                        </tr>
                         <tr>
                             <td colSpan='2'>
                                 <div style={{ display: 'flex', justifyContent: 'center' }}>

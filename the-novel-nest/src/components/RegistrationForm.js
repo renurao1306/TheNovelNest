@@ -104,10 +104,24 @@ function RegistrationForm({ props }) {
 
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         if (validate()) {
-            console.log(firstname, lastname, email, password, confirmPassword, address, course, gender, hobbies);
+            console.log(firstname, lastname, email, password, confirmPassword, address, course, gender, [...hobbies]);
+            let data = { firstname: firstname, lastname: lastname, email: email, password: password, address: address, course: course, gender: gender, hobbies: [...hobbies] }
+
+            const result = await fetch('http://localhost:3001/regform', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            console.log('Received from express server', result);
+            if (result.status == 200){
+                window.alert('Success');
+            }
         }
 
     }
